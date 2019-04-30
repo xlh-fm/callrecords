@@ -31,6 +31,8 @@ public class HBaseDAO {
     private Connection connection;
     private Table table;
     private List<Put> puts;
+    //flag for calling and called
+    private String flag;
 
     public HBaseDAO() throws IOException {
         properties = ResourcesUtil.getProperties();
@@ -42,6 +44,7 @@ public class HBaseDAO {
         table = connection.getTable(TableName.valueOf(tableName));
         puts = new ArrayList<>();
         columnFamilys = new ArrayList<>();
+        flag = "1";
         for (String cf : properties.getProperty("hbase.columnFamilys").split(",")) {
             columnFamilys.add(cf);
         }
@@ -70,14 +73,16 @@ public class HBaseDAO {
         //get value of partition
         String partition = HBaseUtil.getPartition(regions, phone1, setupTime);
         //create rowkey
-        String rowKey = HBaseUtil.getRowkey(partition, phone1, setupTime, timeStamp + "", phone2, duration);
+        String rowKey = HBaseUtil.getRowkey(partition, phone1, setupTime, timeStamp + "", phone2, flag, duration);
         //create put
         Put put = new Put(Bytes.toBytes(rowKey));
         //in this project,only use one columnfamily
         put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("phone1"), Bytes.toBytes(phone1));
         put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("setupTime"), Bytes.toBytes(setupTime));
-        put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("setupTimeStamp"), Bytes.toBytes(timeStamp+""));
+        put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("setupTimeStamp"), Bytes.toBytes(timeStamp +
+                ""));
         put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("phone2"), Bytes.toBytes(phone2));
+        put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("flag"), Bytes.toBytes(flag));
         put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("duration"), Bytes.toBytes(duration));
 
         puts.add(put);
@@ -86,6 +91,7 @@ public class HBaseDAO {
             puts.clear();
         }
     }
+
     //put the remaining data
     public void close() throws IOException {
         table.put(puts);
