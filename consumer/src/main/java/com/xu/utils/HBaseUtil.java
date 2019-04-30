@@ -95,12 +95,12 @@ public class HBaseUtil {
     }
 
     //get value of partition
-    public static String getPartition(int regions, String phone, String callTime) {
+    public static String getPartition(int regions, String phone, String setupTime) {
         DecimalFormat format = new DecimalFormat("00");
         //get the last 8 digits of the phone number
         String subPhone = phone.substring(3, 11);
         //get year and month
-        String ym = callTime.replace("-", "").substring(0, 6);
+        String ym = setupTime.replace("-", "").substring(0, 6);
         //get partition
         int p = (Integer.valueOf(subPhone) ^ Integer.valueOf(ym)) % regions;
         return format.format(p);
