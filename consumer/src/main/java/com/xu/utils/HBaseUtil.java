@@ -88,8 +88,9 @@ public class HBaseUtil {
     //5.create rowkey
     //0X_080XXXXXXXX_yyyy-MM-dd HH:mm:ss_timestamp_070XXXXXXXX_duration
     public static String getRowkey(String partition, String phone1, String setupTime, String timeStamp, String phone2,
-                                   String duration) {
-        return partition + "_" + phone1 + "_" + setupTime + "_" + timeStamp + "_" + phone2 + "_" + duration;
+                                   String flag, String duration) {
+        return partition + "_" + phone1 + "_" + setupTime + "_" + timeStamp + "_" + phone2 + "_" + flag + "_" +
+                duration;
     }
 
     //get value of partition
@@ -102,16 +103,5 @@ public class HBaseUtil {
         //get partition
         int p = (Integer.valueOf(subPhone) ^ Integer.valueOf(ym)) % regions;
         return format.format(p);
-    }
-
-    public static void main(String[] args) {
-        byte[][] splitKeys = createSplitKeys(6);
-        for (byte[] splitKey : splitKeys) {
-            System.out.println(Bytes.toString(splitKey));
-        }
-        String partition = getPartition(6, "08034578908", "2018-09-04 09:34:12");
-        String rowkey = getRowkey(partition, "08034578908", "2018-09-04 09:34:12",
-                "435345", "07074221099", "0235");
-        System.out.println(rowkey);
     }
 }
