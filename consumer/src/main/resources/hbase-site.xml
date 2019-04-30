@@ -45,4 +45,14 @@
 		<name>hbase.zookeeper.property.dataDir</name>
 		<value>/opt/module/zookeeper/zkData</value>
 	</property>
+
+	<property>
+		<name>hbase.coprocessor.enabled</name>
+		<value>true</value>
+	</property>
+
+	<property>
+		<name>hbase.coprocessor.region.classes</name>
+		<value>com.xu.coprocessor.MyCoprocessor</value>
+	</property>
 </configuration>
