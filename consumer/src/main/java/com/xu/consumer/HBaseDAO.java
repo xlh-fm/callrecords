@@ -93,7 +93,6 @@ public class HBaseDAO {
             puts.clear();
         }
     }
-
     //put the remaining data
     public void close() throws IOException {
         table.put(puts);
