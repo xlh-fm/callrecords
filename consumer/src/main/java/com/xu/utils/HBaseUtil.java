@@ -66,6 +66,7 @@ public class HBaseUtil {
         for (String columnFamily : columnFamilys) {
             hTableDescriptor.addFamily(new HColumnDescriptor(columnFamily));
         }
+        hTableDescriptor.addCoprocessor("com.xu.coprocessor.MyCoprocessor");
         //create table
         admin.createTable(hTableDescriptor, createSplitKeys(regions));
         admin.close();
