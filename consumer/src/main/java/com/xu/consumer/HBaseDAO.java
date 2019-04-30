@@ -44,6 +44,7 @@ public class HBaseDAO {
         table = connection.getTable(TableName.valueOf(tableName));
         puts = new ArrayList<>();
         columnFamilys = new ArrayList<>();
+        //"1" means calling number in front of rowkey
         flag = "1";
         for (String cf : properties.getProperty("hbase.columnFamilys").split(",")) {
             columnFamilys.add(cf);
@@ -68,18 +69,19 @@ public class HBaseDAO {
         String phone2 = splits[1];
         String setupTime = splits[2];
         String duration = splits[3];
-        long timeStamp = sdf.parse(setupTime).getTime();
+        long setupTimeStamp = sdf.parse(setupTime).getTime();
 
         //get value of partition
         String partition = HBaseUtil.getPartition(regions, phone1, setupTime);
         //create rowkey
-        String rowKey = HBaseUtil.getRowkey(partition, phone1, setupTime, timeStamp + "", phone2, flag, duration);
+        String rowKey = HBaseUtil.getRowkey(partition, phone1, setupTime, setupTimeStamp + "", phone2, flag, duration);
         //create put
         Put put = new Put(Bytes.toBytes(rowKey));
-        //in this project,only use one columnfamily
+
         put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("phone1"), Bytes.toBytes(phone1));
         put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("setupTime"), Bytes.toBytes(setupTime));
-        put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("setupTimeStamp"), Bytes.toBytes(timeStamp +
+        put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("setupTimeStamp"), Bytes.toBytes
+                (setupTimeStamp +
                 ""));
         put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("phone2"), Bytes.toBytes(phone2));
         put.addColumn(Bytes.toBytes(columnFamilys.get(0)), Bytes.toBytes("flag"), Bytes.toBytes(flag));
