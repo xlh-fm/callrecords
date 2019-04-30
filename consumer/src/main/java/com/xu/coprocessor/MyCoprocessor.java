@@ -36,7 +36,6 @@ public class MyCoprocessor extends BaseRegionObserver {
         for (String cf : ResourcesUtil.getProperties().getProperty("hbase.columnFamilys").split(",")) {
             columnFamilys.add(cf);
         }
-
         //get data from rowkey
         String callingPhone = splits[1];
         String setupTime = splits[2];
