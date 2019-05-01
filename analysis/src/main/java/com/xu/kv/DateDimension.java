@@ -12,6 +12,12 @@ public class DateDimension extends Dimension {
     public DateDimension() {
     }
 
+    public DateDimension(String year, String month, String day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
     public String getYear() {
         return year;
     }
