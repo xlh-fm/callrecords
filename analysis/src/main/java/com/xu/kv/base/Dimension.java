@@ -1,4 +1,4 @@
-package com.xu.kv;
+package com.xu.kv.base;
 
 import org.apache.hadoop.io.WritableComparable;
 

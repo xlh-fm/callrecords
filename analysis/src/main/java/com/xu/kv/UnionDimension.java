@@ -1,5 +1,7 @@
 package com.xu.kv;
 
+import com.xu.kv.base.Dimension;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
