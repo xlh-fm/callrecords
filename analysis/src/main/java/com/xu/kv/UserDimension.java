@@ -11,6 +11,11 @@ public class UserDimension extends Dimension {
     public UserDimension() {
     }
 
+    public UserDimension(String phoneNo, String userName) {
+        this.phoneNo = phoneNo;
+        this.userName = userName;
+    }
+
     public String getPhoneNo() {
         return phoneNo;
     }
