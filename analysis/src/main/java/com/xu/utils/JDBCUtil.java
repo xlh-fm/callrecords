@@ -19,13 +19,18 @@ public class JDBCUtil {
         }
     }
 
-    private static Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName(properties.getProperty("MYSQL_DRIVER_CLASS"));
-        return DriverManager.getConnection(properties.getProperty("MYSQL_URL"), properties.getProperty("MYSQL_USER"),
-                properties.getProperty("MYSQL_PASSWORD"));
+    private static Connection getConnection() {
+        try {
+            Class.forName(properties.getProperty("MYSQL_DRIVER_CLASS"));
+            return DriverManager.getConnection(properties.getProperty("MYSQL_URL"), properties.getProperty
+                    ("MYSQL_USER"), properties.getProperty("MYSQL_PASSWORD"));
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static Connection getInstance() throws SQLException, ClassNotFoundException {
+    public static Connection getInstance() {
         if (connection == null) {
             connection = getConnection();
         }
