@@ -35,7 +35,7 @@ public class DimensionConverter {
         return dimensionID;
     }
 
-    private int sqlForDimensionID(String[] sqls) throws SQLException {
+    private synchronized int sqlForDimensionID(String[] sqls) throws SQLException {
         Connection connection = JDBCUtil.getInstance();
         //query whether there is a value for this dimension in the database
         PreparedStatement preparedStatement = connection.prepareStatement(sqls[0]);
