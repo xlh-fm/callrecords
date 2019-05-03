@@ -104,7 +104,16 @@ public class MysqlOutputFormat extends OutputFormat<UnionDimension, CalculateDur
 
         @Override
         public void close(TaskAttemptContext context) throws IOException, InterruptedException {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.executeBatch();
+                    connection.commit();
 
+                    JDBCUtil.close(connection, preparedStatement, null);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
