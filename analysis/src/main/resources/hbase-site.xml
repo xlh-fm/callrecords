@@ -53,6 +53,6 @@
 
 	<property>
 		<name>hbase.coprocessor.region.classes</name>
-		<value>com.xu.coprocessor.MyCoprocessor</value>
+		<value>MyCoprocessor</value>
 	</property>
 </configuration>

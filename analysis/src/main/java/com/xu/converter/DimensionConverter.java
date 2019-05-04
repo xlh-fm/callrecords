@@ -1,10 +1,10 @@
 package com.xu.converter;
 
 import com.xu.kv.DateDimension;
-import com.xu.kv.UserDimension;
-import com.xu.kv.base.Dimension;
 import com.xu.utils.JDBCUtil;
 import com.xu.utils.LRUCache;
+import com.xu.kv.UserDimension;
+import com.xu.kv.base.Dimension;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 //get the dimension id of user and date in mysql table
 public class DimensionConverter {
-    LRUCache dimensionCache = new LRUCache(500);
+    private LRUCache dimensionCache = new LRUCache(500);
 
     public int getDimensionID(Dimension dimension) throws SQLException {
         String dimensionKey = getDimensionKey(dimension);

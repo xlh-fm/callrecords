@@ -1,8 +1,8 @@
 package com.xu.mr;
 
+import com.xu.utils.ResourcesUtil;
 import com.xu.kv.UnionDimension;
 import com.xu.outputformat.MysqlOutputFormat;
-import com.xu.utils.ResourcesUtil;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.Scan;

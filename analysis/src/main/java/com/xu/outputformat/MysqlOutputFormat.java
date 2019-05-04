@@ -1,9 +1,9 @@
 package com.xu.outputformat;
 
+import com.xu.utils.JDBCUtil;
 import com.xu.converter.DimensionConverter;
 import com.xu.kv.CalculateDurationValue;
 import com.xu.kv.UnionDimension;
-import com.xu.utils.JDBCUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter;
