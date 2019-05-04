@@ -9,7 +9,7 @@ import java.util.List;
 
 //generate multiple groups of startRow and stopRow
 public class HBaseRowKeyScanUtil {
-    static List<String[]> list;
+    private static List<String[]> list;
 
     //09078923434,2018,04-06
     public static List<String[]> getStartStop(String phone, String start, String stop) throws ParseException {
