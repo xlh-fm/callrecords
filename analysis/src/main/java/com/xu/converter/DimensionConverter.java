@@ -67,14 +67,14 @@ public class DimensionConverter {
             sqls[1] = "INSERT INTO `tb_users` VALUES (NULL," + "'" + phoneNo + "','" + userName + "')";
         } else {
             DateDimension dateDimension = (DateDimension) dimension;
-            String year = dateDimension.getYear();
-            String month = dateDimension.getMonth();
-            String day = dateDimension.getDay();
+            int call_year = Integer.valueOf(dateDimension.getYear());
+            int call_month = Integer.valueOf(dateDimension.getMonth());
+            int call_day = Integer.valueOf(dateDimension.getDay());
 
-            sqls[0] = "SELECT `id` FROM `tb_date` WHERE `year` =" + Integer.valueOf(year) + "AND " +
-                    "`month` =" + Integer.valueOf(month) + "AND `day` =" + Integer.valueOf(day);
-            sqls[1] = "INSERT INTO `tb_date` VALUES (NULL," + Integer.valueOf(year) + "," + Integer.valueOf(month) + ","
-                    + Integer.valueOf(day) + ")";
+            sqls[0] = "SELECT `id` FROM `tb_date` WHERE `year` =" + call_year + "AND " +
+                    "`month` =" + call_month + "AND `day` =" + call_day;
+            sqls[1] = "INSERT INTO `tb_date` VALUES (NULL," + call_year + "," + call_month + ","
+                    + call_day + ")";
         }
         return sqls;
     }
