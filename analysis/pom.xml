@@ -62,7 +62,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.xu.consumer.HBaseConsumer</mainClass>
+                            <mainClass>com.xu.mr.CalculateDurationDriver</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
