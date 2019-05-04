@@ -1,5 +1,6 @@
 # callrecords
 ## target
+Analyze call data.
 Count the number of calls and duration per day, month, and year for users.
 ## technology used
 hadoop,zookeeper,flume,kafka,HBase,MapReduce,MySQL
