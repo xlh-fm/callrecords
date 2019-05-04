@@ -71,8 +71,8 @@ public class DimensionConverter {
             int call_month = Integer.valueOf(dateDimension.getMonth());
             int call_day = Integer.valueOf(dateDimension.getDay());
 
-            sqls[0] = "SELECT `id` FROM `tb_date` WHERE `year` =" + call_year + "AND " +
-                    "`month` =" + call_month + "AND `day` =" + call_day;
+            sqls[0] = "SELECT `id` FROM `tb_date` WHERE `year` = " + call_year + " AND " +
+                    "`month` = " + call_month + " AND `day` = " + call_day;
             sqls[1] = "INSERT INTO `tb_date` VALUES (NULL," + call_year + "," + call_month + ","
                     + call_day + ")";
         }
